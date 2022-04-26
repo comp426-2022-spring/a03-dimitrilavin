@@ -39,4 +39,42 @@ app.use(function(req, res) {
     res.type("text/plain")
 })
 
+function coinFlip() {
+    return Math.random() > .5 ? ("heads") : ("tails")
+}
 
+function coinFlips(flips) {
+    var temp = new Array();
+    if (flips < 1 || typeof flips == 'undefined') {
+      flips = 1;
+    }
+    for (var i = 0; i < flips; i++) {  
+      temp.push(coinFlip());
+    }
+    return temp;
+}
+
+function countFlips(array) {
+    let h = 0;
+    let t = 0;
+    for (let i  = 0; i < array.length; i++) {
+      if (array[i] == 'heads') {
+        h++;
+      }
+      if (array[i] == 'tails') {
+        t++;
+      }
+    }
+    return {heads: h, tails: t};
+}
+
+function flipACoin(call) {
+    let flip = coinFlip()
+    let result = '';
+    if (flip == call) {
+      result = 'win';
+    } else {
+      result = 'lose';
+    }
+    return {call: call, flip: flip, result: result}
+}
